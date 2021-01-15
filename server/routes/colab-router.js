@@ -17,8 +17,10 @@ function routes(){
                         nome: saved.nome,
                         email: saved.email,
                         idade: saved.idade,
+                        cargo: saved.cargo,
                         fomarcao: saved.fomarcao,
-                        certificacao: saved.certificacao
+                        certificacao: saved.certificacao,
+                        rpps: saved.rpps
                     }
                 })
             }).catch(error => res.status(500).json({
@@ -30,7 +32,7 @@ function routes(){
     router.post('/my', (req, res) => {
         let info = req.body
 
-        ColabSchema.find({email: info.email})
+        ColabSchema.find({_id: info.id})
             .then(colab => {
                 res.status(201).json({
                     success: true,
@@ -50,9 +52,10 @@ function routes(){
             _id: info.id
             },{
                 $set: {
-                    colab: info.nome,
+                    nome: info.nome,
                     email: info.email,
                     idade: info.idade,
+                    cargo: info.cargo,
                     fomarcao: info.fomarcao,
                     certificacao: info.certificacao
                 }

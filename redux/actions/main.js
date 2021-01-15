@@ -38,16 +38,17 @@ export const addColab = (nome, email, idade, formacao, certificacao) => async di
     }
 }
 
-export const getColabs = (email) => async dispatch => {
+export const getColabs = (_id) => async dispatch => {
     try {
         dispatch({
             type: t.LOADING,
             payload: true
         })
 
+
         const apiResponse = post(
             process.env.API_ADDRESS+'/api/colab/my',
-            { email }
+            { _id }
         )
 
         dispatch({
