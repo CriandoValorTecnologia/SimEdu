@@ -63,7 +63,7 @@ function Home(props) {
                 />
               </Col>
               <Col xs="auto">
-                <Button onClick={() => setInfo(rpps)} className="mb-2" href="/">
+                <Button onClick={() => setInfo(rpps)} className="mb-2" href="/colabs">
                   Avançar
                 </Button>
               </Col>
