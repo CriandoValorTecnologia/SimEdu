@@ -26,7 +26,7 @@ function Header(props) {
         <link
           href="http://fonts.googleapis.com/css?family=Lato"
           rel="stylesheet"
-          type="text/css"
+          //type="text/css"
         />
       </Head>
 
