@@ -47,7 +47,6 @@ function Home(props) {
               plano, com um preço EXCLUSIVO para o seu RPPS.
             </p>
           </div>
-          <label>Nada</label>
           <Form className="txtrpps1">
             <Form.Row className="align-items-center">
               <Col xs={7}>
