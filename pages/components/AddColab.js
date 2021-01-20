@@ -1,6 +1,4 @@
 import { Form, Button, Modal, Alert } from "react-bootstrap";
-import { formacoes } from "../colabs"
-import { getFormacoes } from "../../redux/actions/main"
 import { useEffect } from "react"
 
 const AddColab = ({
@@ -8,9 +6,8 @@ const AddColab = ({
   setShow,
   form,
   setFormValue,
-  addColab,
-  isLoading,
-  error,
+  saveColab,
+  error
 }) => {
 
   return (
@@ -37,7 +34,7 @@ const AddColab = ({
               <Form.Control
                 type="number"
                 min="0"
-                placeholder="Insira a idade"
+                placeholder="Insira a idade do Colaborador"
                 onChange={(e) =>
                   setFormValue({ ...form, idade: e.target.value })
                 }
@@ -55,10 +52,10 @@ const AddColab = ({
 
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
+              <Form.Label>E-mail</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Insira o email"
+                placeholder="Insira o e-mail"
                 onChange={(e) =>
                   setFormValue({ ...form, email: e.target.value })
                 }
@@ -77,7 +74,9 @@ const AddColab = ({
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
             <Form.Label>Formação</Form.Label>
-              <Form.Control as="select">
+              <Form.Control as="select"
+              onChange={(e) => setFormValue({ ...form, formacao: e.target.value})}>
+                  <option value="" selected disabled>Selecione uma formação</option>
                   <option>Ensino Médio Completo</option>
                   <option>Ensino Superior Completo</option>
                   <option>Ensino Superior Incompleto</option>
@@ -93,10 +92,9 @@ const AddColab = ({
           </Button>
           <Button
             variant="primary"
-            onClick={() => addColab()}
-            disabled={isLoading}
+            onClick={() => saveColab()}
           >
-            {isLoading ? "...loading" : "Adicionar"}
+            Adicionar
           </Button>
         </Modal.Footer>
       </Modal>

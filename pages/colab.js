@@ -1,21 +1,26 @@
 import Head from "next/head";
+import React from 'react'
 import style from "../style/index.less";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { ListGroup, Button, Table } from "react-bootstrap";
 import { saveColab, getColabs } from "../redux/actions/main";
 import Header from "./components/Header";
 import AddColab from "./components/AddColab";
 
-function Colabs(props) {
 
-  const saveColab = () => props.saveColab(form);
+function Colab() {
 
-  const { colabs, loading, error } = props.userInfo
+  const error = useSelector(state => state.error)
+  const dispatch = useDispatch()
+
+  const handleSaveColab = () => dispatch(saveColab(form))
+
   const [show, setShow] = useState(false);
   const [form, setFormValue] = useState("");
 
   return (
+    <>
     <div className="xcontainer">
       <Head>
         <title>Planejamento Educacional para RPPS</title>
@@ -28,9 +33,8 @@ function Colabs(props) {
           setShow={setShow}
           form={form}
           setFormValue={setFormValue}
-          isLoading={loading}
+          saveColab={handleSaveColab}
           error={error}
-          saveColab={saveColab}
         />
         <div className="main">
           <Header />
@@ -42,44 +46,35 @@ function Colabs(props) {
           >
             + Adicionar Colaborador
           </Button>
-
+          {/*
           <div className="tabelacolab">
-          <Table striped bordered hover size="xl">
-            <thead class="thead-dark">
+            {
+              colabs && colabs.length > 0 ?
+              colabs.map((colab,i) => 
+          <Table striped bordered hover size="sm">
+            <thead>
               <tr>
                 <th>Nome</th>
                 <th>Função/Cargo</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Joao</td>
-                <td>Admin</td>
-              </tr>
-              <tr>
-                <td>Maria</td>
-                <td>Gerente</td>
-              </tr>
-              <tr>
-                <td>Fernanda</td>
-                <td>TI</td>
+              <tr key={i}>
+                <td>{colab.nome}</td>
+                <td>{colab.cargo}</td>
               </tr>
             </tbody>
           </Table>
-              
+              )
+            : "Nenhum colaborador adicionado"
+            }
           </div>
+          */}
         </div>
       </main>
     </div>
+    </>
   );
 }
 
-const mapStateToProps = (state) => ({
-  userInfo: state.main,
-});
-
-const mapDispatchToProps = {
-  
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Colabs);
+export default Colab;

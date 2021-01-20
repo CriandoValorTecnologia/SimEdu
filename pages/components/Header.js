@@ -2,10 +2,19 @@ import Link from "next/link";
 import Head from "next/head";
 import { Navbar, Nav, NavDropdown, Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
+import { useState, useEffect } from "react"
+import { restore } from "../../redux/actions/main"
 
 function Header(props) {
 
-  const {userInfo} = props
+  const {userInfo, restore} = props
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user_info"))
+    if(userData){
+      restore(userData)
+    }
+  }, [])
 
   return (
     <>
@@ -89,6 +98,8 @@ const mapStateToProps = (state) => ({
   userInfo: state.main,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  restore
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -1,14 +1,25 @@
 import Head from "next/head";
 import style from "../style/index.less";
 import Header from "./components/Header";
+import { useSelector, useDispatch } from "react-redux"
+import { useState, useEffect } from "react"
+import { setInfo } from "../redux/actions/main"
 import { Form, Col, Button } from "react-bootstrap";
 import { Container } from "next/app";
 
-export default function Home() {
+
+
+function Home(props) {
+
+  const { userInfo, setInfo } = props;
+  const [ rpps, setRPPS ] = useState("")
+
+
   return (
+    <>
     <div className="xcontainer">
       <Head>
-        <title>Simulador de Planejamento Educacional</title>
+        <title>Planejamento Educacional</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -36,6 +47,7 @@ export default function Home() {
               plano, com um preço EXCLUSIVO para o seu RPPS.
             </p>
           </div>
+          <label>Nada</label>
           <Form className="txtrpps1">
             <Form.Row className="align-items-center">
               <Col xs={7}>
@@ -47,10 +59,11 @@ export default function Home() {
                   className="mb-2"
                   id="inlineFormInput"
                   placeholder="Insira seu RPPS"
+                  onChange={(e) => setRPPS(e.target.value)}
                 />
               </Col>
               <Col xs="auto">
-                <Button onClick={() => goCollabs()} className="mb-2">
+                <Button onClick={() => setInfo(rpps)} className="mb-2" href="/">
                   Avançar
                 </Button>
               </Col>
@@ -59,5 +72,9 @@ export default function Home() {
         </div>
       </main>
     </div>
+    </>
   );
 }
+
+
+export default (Home)

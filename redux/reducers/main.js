@@ -1,38 +1,23 @@
 import * as t from "../types";
 
-const main = (
-  state = {
-    nome: "guest",
-    loading: false,
-    error: null,
-    colabs: [],
-  },
-  action
-) => {
+const main = (state ,action) => {
   switch (action.type) {
-    case t.LOADING:
-      return {
-        ...state,
-        loading: action.payload,
-      };
+      case t.SET_RPPS:
+        return { 
+          ...state,
+          rpps: action.payload
+        };
 
-    case t.ERROR:
-      return {
-        ...state,
-        error: action.payload,
-      };
-
-    case t.ADD_COLAB:
-      return {
-        ...state,
-        colabs: state.colabs.concat(action.payload),
-      };
-
-    case t.GET_COLABS:
-      return {
-        ...state,
-        colabs: action.payload,
-      };
+        case t.REGISTER:
+          return {
+            ...state,
+            nome: action.payload.nome,
+            idade: action.payload.idade,
+            email: action.payload.email,
+            certificacao: action.payload.certificacao,
+            formacao: action.payload.formacao,
+            rpps: action.payload.rpps
+          }
 
     default:
       return { ...state };
