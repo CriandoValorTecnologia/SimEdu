@@ -24,7 +24,7 @@ function Header(props) {
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         />
         <link
-          href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext"
+          href="http://fonts.googleapis.com/css?family=Lato"
           rel="stylesheet"
           type="text/css"
         />
