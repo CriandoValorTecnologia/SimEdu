@@ -8,8 +8,8 @@ import {createColab,getInfo,getColabs,deleteColab,updateColab, getColab} from ".
 import Header from "./components/Header";
 import AddColab from "./components/AddColab";
 //import EditColab from "./components/EditColab";
-import editicon from "./assets/editicon.png";
-import deleteicon from "./assets/deleteicon.png";
+import Editicon from "./assets/Editicon.png";
+import Deleteicon from "./assets/Deleteicon.png";
 
 function Colab(props) {
   const { colab, colabs, error } = props.userInfo;
@@ -109,7 +109,7 @@ function Colab(props) {
                         <td><a data-tooltip={"Formacao: "+colab.formacao +"\n Certificacao: "+colab.certificacao}>{colab.nome}</a></td>
                         <td>{colab.cargo}</td>
                         <img
-                          src={editicon}
+                          src={Editicon}
                           type="button"
                           id={colab._id}
                           width="20"
@@ -118,7 +118,7 @@ function Colab(props) {
                           //onClick={() => edcolab(colab)}
                         />
                         <img
-                          src={deleteicon}
+                          src={Deleteicon}
                           type="button"
                           width="20"
                           height="20"
