@@ -7,14 +7,14 @@ import { ListGroup, Button, Table } from "react-bootstrap";
 import {createColab,getInfo,getColabs,deleteColab,updateColab, getColab} from "../redux/actions/main";
 import Header from "./components/Header";
 import AddColab from "./components/AddColab";
-import EditColab from "./components/EditColab";
+//import EditColab from "./components/EditColab";
 import editicon from "./assets/editicon.png";
 import deleteicon from "./assets/deleteicon.png";
 
 function Colab(props) {
   const { colab, colabs, error } = props.userInfo;
   const [show, setShow] = useState(false);
-  const [ushow, usetShow] = useState(false);
+  //const [ushow, usetShow] = useState(false);
   const [form, setFormValue] = useState("");
   const { deleteColab } = props;
 
@@ -33,9 +33,9 @@ function Colab(props) {
     props.createColab(form);
   };
 
-  const updateColab = () => {
-    props.updateColab(form);
-  };
+  // const updateColab = () => {
+  //   props.updateColab(form);
+  // };
 
   function delColab(d) {
     window.location.reload();
@@ -45,11 +45,11 @@ function Colab(props) {
     }, 2000);
   }
 
-  function edcolab(colab) {
-    const data = colab
-    localStorage.setItem("colab", JSON.stringify(data))
-    usetShow(!ushow)
-  }
+  // function edcolab(colab) {
+  //   const data = colab
+  //   localStorage.setItem("colab", JSON.stringify(data))
+  //   usetShow(!ushow)
+  // }
 
   return (
     <>
@@ -152,7 +152,7 @@ const mapDispatchToProps = {
   getInfo,
   createColab,
   getColabs,
-  updateColab,
+  //updateColab,
   deleteColab,
   getColab
 };
