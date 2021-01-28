@@ -115,7 +115,7 @@ function Colab(props) {
                           width="20"
                           height="20"
                           className="my-3 mr-2"
-                          onClick={() => edcolab(colab)}
+                          //onClick={() => edcolab(colab)}
                         />
                         <img
                           src={deleteicon}
