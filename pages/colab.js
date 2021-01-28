@@ -68,7 +68,7 @@ function Colab(props) {
             createColab={createColab}
             error={error}
           />
-          <EditColab
+          {/* <EditColab
             show={ushow}
             setShow={usetShow}
             form={form}
@@ -78,7 +78,7 @@ function Colab(props) {
             error={error}
             props={props}
             colab={colab}
-          />
+          /> */}
           <div className="main">
             <Header />
             <div className="AddColabTop">
