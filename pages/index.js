@@ -1,7 +1,7 @@
 import Head from "next/head";
 import style from "../style/index.less";
 import Header from "./components/Header";
-import { useSelector, useDispatch } from "react-redux"
+import { connect } from "react-redux"
 import { useState, useEffect } from "react"
 import { setInfo } from "../redux/actions/main"
 import { Form, Col, Button } from "react-bootstrap";
@@ -47,7 +47,15 @@ function Home(props) {
               plano, com um preço EXCLUSIVO para o seu RPPS.
             </p>
           </div>
+          <img
+            width="540"
+            height="56"
+            src="https://criandovaloreducacao.com.br/wp-content/uploads/2020/05/logo-edu.png"
+            className="logo"
+            alt="Criando Valor – Educação"
+          />
           <Form className="txtrpps1">
+          <p className="Viniciar">Vamos iniciar?</p>
             <Form.Row className="align-items-center">
               <Col xs={7}>
                 <Form.Label htmlFor="inlineFormInput" srOnly>
@@ -55,14 +63,18 @@ function Home(props) {
                 </Form.Label>
                 <Form.Control
                   required
-                  className="mb-2"
+                  type="number"
+                  className="txtCNPJ mb-1"
                   id="inlineFormInput"
-                  placeholder="Insira seu RPPS"
+                  placeholder="Insira o CNPJ"
+                  value={rpps}
                   onChange={(e) => setRPPS(e.target.value)}
                 />
               </Col>
               <Col xs="auto">
-                <Button onClick={() => setInfo(rpps)} className="mb-2" href="/colabs">
+                <Button onClick={() => setInfo(rpps)} 
+                className="btnAvancar mb-1" 
+                href="/colab">
                   Avançar
                 </Button>
               </Col>
@@ -76,4 +88,12 @@ function Home(props) {
 }
 
 
-export default (Home)
+const mapStateToProps = state => ({
+  userInfo: state.main
+})
+
+const mapDispatchToProps = {
+  setInfo: setInfo
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

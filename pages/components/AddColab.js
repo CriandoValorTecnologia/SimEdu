@@ -1,12 +1,11 @@
 import { Form, Button, Modal, Alert } from "react-bootstrap";
-import { useEffect } from "react"
 
 const AddColab = ({
   show,
   setShow,
   form,
   setFormValue,
-  saveColab,
+  createColab,
   error
 }) => {
 
@@ -29,17 +28,6 @@ const AddColab = ({
                 }
               />
             </Form.Group>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Idade</Form.Label>
-              <Form.Control
-                type="number"
-                min="0"
-                placeholder="Insira a idade do Colaborador"
-                onChange={(e) =>
-                  setFormValue({ ...form, idade: e.target.value })
-                }
-              />
-              </Form.Group>
 
               <Form.Group controlId="formBasicEmail">
               <Form.Label>Cargo</Form.Label>
@@ -50,16 +38,6 @@ const AddColab = ({
                   setFormValue({ ...form, cargo: e.target.value })}
               />
 
-            </Form.Group>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>E-mail</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Insira o e-mail"
-                onChange={(e) =>
-                  setFormValue({ ...form, email: e.target.value })
-                }
-              />
             </Form.Group>
             
             <Form.Group controlId="formBasicEmail">
@@ -88,11 +66,11 @@ const AddColab = ({
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShow(false)}>
-            Cancel
+            Cancelar
           </Button>
           <Button
             variant="primary"
-            onClick={() => saveColab()}
+            onClick={() => createColab()}
           >
             Adicionar
           </Button>

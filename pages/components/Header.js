@@ -23,14 +23,9 @@ function Header(props) {
           rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         />
-        <link
-          href="http://fonts.googleapis.com/css?family=Lato"
-          rel="stylesheet"
-          //type="text/css"
-        />
       </Head>
 
-      <Navbar className="navcomp navbar-fixed-top" bg="light" variant="light">
+      {/* <Navbar className="navcomp navbar-fixed-top" bg="light" variant="light">
         <Navbar.Brand href="/">
           <img
             width="270"
@@ -89,7 +84,7 @@ function Header(props) {
             Área do Aluno
           </Button>
         </Nav>
-      </Navbar>
+      </Navbar> */}
     </>
   );
 }

@@ -1,4 +1,3 @@
-const validate = require ('../middleware/validate')
 const router = require('express').Router()
 require('dotenv').config()
 const ColabSchema = require('../model/schemas/colab')
@@ -15,11 +14,9 @@ function routes(){
                     success: true,
                     colab: {
                         nome: saved.nome,
-                        email: saved.email,
-                        idade: saved.idade,
                         cargo: saved.cargo,
-                        fomarcao: saved.fomarcao,
                         certificacao: saved.certificacao,
+                        formacao: saved.formacao,
                         rpps: saved.rpps
                     }
                 })
@@ -29,10 +26,25 @@ function routes(){
             }))
     })
 
-    router.post('/my', (req, res) => {
+    router.post('/findid', (req, res) => {
         let info = req.body
 
         ColabSchema.find({_id: info.id})
+            .then(colab => {
+                res.status(201).json({
+                    success: true,
+                    colab: colab
+                })
+            }).catch(error => res.status(500).json({
+                success: false,
+                error: error
+            }))
+    })
+
+    router.post('/findrpps', (req, res) => {
+        let info = req.body
+
+        ColabSchema.find({rpps: info.rpps})
             .then(colab => {
                 res.status(201).json({
                     success: true,
@@ -44,7 +56,7 @@ function routes(){
             }))
     })
 
-    router.post('/update', validate, async (req, res) => {
+    router.post('/update', async (req, res) => {
         let info = req.body
 
         try {
@@ -53,16 +65,15 @@ function routes(){
             },{
                 $set: {
                     nome: info.nome,
-                    email: info.email,
-                    idade: info.idade,
                     cargo: info.cargo,
                     fomarcao: info.fomarcao,
-                    certificacao: info.certificacao
+                    certificacao: info.certificacao,
+                    rpps: info.rpps
                 }
             })
 
             if(colab) {
-                const colabs = await ColabSchema.find({ email: info.email })
+                const colabs = await ColabSchema.find({ _id: info.id })
                 res.status(200).json({
                     success:true,
                     colabs: colabs
@@ -76,7 +87,7 @@ function routes(){
         }
     })
 
-    router.post('/delete', validate, async (req, res) => {
+    router.post('/delete', async (req, res) => {
         let info = req.body
 
         try {
@@ -85,7 +96,7 @@ function routes(){
                 })
     
                 if(colab) {
-                    const colabs = await ColabSchema.find({ email: info.email })
+                    const colabs = await ColabSchema.find({ _id: info.id })
                     res.status(200).json({
                         success:true,
                         colabs: colabs
