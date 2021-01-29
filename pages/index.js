@@ -14,7 +14,6 @@ function Home(props) {
   const { userInfo, setInfo } = props;
   const [ rpps, setRPPS ] = useState("")
 
-
   return (
     <>
     <div className="xcontainer">
@@ -72,7 +71,8 @@ function Home(props) {
                 />
               </Col>
               <Col xs="auto">
-                <Button onClick={() => setInfo(rpps)} 
+                <Button type="submit" 
+                onClick={() => setInfo(rpps)} 
                 className="btnAvancar mb-1" 
                 href="/colab">
                   Avançar

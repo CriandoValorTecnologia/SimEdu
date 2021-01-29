@@ -14,7 +14,7 @@ const ColabSchema = new Schema({
     unique: false,
   },
   certificacao: {
-    type: String,
+    type: [String],
     unique: false,
   },
   formacao: {

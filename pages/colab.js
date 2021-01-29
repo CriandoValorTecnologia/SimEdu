@@ -7,15 +7,15 @@ import { ListGroup, Button, Table } from "react-bootstrap";
 import {createColab,getInfo,getColabs,deleteColab,updateColab, getColab} from "../redux/actions/main";
 import Header from "./components/Header";
 import AddColab from "./components/AddColab";
-//import EditColab from "./components/EditColab";
+import EditColab from "./components/EditColab";
 import Editicon from "./assets/Editicon.png";
 import Deleteicon from "./assets/Deleteicon.png";
 
 function Colab(props) {
   const { colab, colabs, error } = props.userInfo;
   const [show, setShow] = useState(false);
-  //const [ushow, usetShow] = useState(false);
-  const [form, setFormValue] = useState("");
+  const [ushow, usetShow] = useState(false);
+  const [form, setFormValue] = useState("", []);
   const { deleteColab } = props;
 
   useEffect(() => {
@@ -33,9 +33,9 @@ function Colab(props) {
     props.createColab(form);
   };
 
-  // const updateColab = () => {
-  //   props.updateColab(form);
-  // };
+  const updateColab = () => {
+    props.updateColab(form);
+  };
 
   function delColab(d) {
     window.location.reload();
@@ -45,11 +45,11 @@ function Colab(props) {
     }, 2000);
   }
 
-  // function edcolab(colab) {
-  //   const data = colab
-  //   localStorage.setItem("colab", JSON.stringify(data))
-  //   usetShow(!ushow)
-  // }
+  function edcolab(colab) {
+    const data = colab
+    localStorage.setItem("colab", JSON.stringify(data))
+    usetShow(!ushow)
+  }
 
   return (
     <>
@@ -68,7 +68,7 @@ function Colab(props) {
             createColab={createColab}
             error={error}
           />
-          {/* <EditColab
+          <EditColab
             show={ushow}
             setShow={usetShow}
             form={form}
@@ -78,7 +78,7 @@ function Colab(props) {
             error={error}
             props={props}
             colab={colab}
-          /> */}
+          />
           <div className="main">
             <Header />
             <div className="AddColabTop">
@@ -115,7 +115,7 @@ function Colab(props) {
                           width="20"
                           height="20"
                           className="my-3 mr-2"
-                          //onClick={() => edcolab(colab)}
+                          onClick={() => edcolab(colab)}
                         />
                         <img
                           src={Deleteicon}
